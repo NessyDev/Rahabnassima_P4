@@ -199,6 +199,7 @@ input {
   padding: 8px;
   border: 0.8px solid #ccc;
   outline: none;
+  
 }
 .text-control {
   margin: 0;
@@ -207,6 +208,7 @@ input {
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
+ 
 }
 .formData[data-error]::after {
   content: attr(data-error);
@@ -223,15 +225,15 @@ input {
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
-.formData[data-error-visible="true"] .text-control {
+.formData[data-error-visible="false"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
-} */
+} 
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -322,7 +324,7 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup, .validation-button{
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -516,6 +518,51 @@ footer {
     text-align: center;
   }
 }
+
+/*errors*/
+
+.errors{
+  font-size: 16px;
+  color: #fe152e;
+}
+
+
+
+
+/*Validation Forms Windows*/
+
+.validation-form{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 850px;
+  margin-top: 40px;
+}
+
+.validation-form p {
+  width: 310px;
+  height: 154px;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.validation-button{
+  bottom: 20px;
+  position: absolute;
+}
+
+/*forms input change*/
+
+
+
+/* .error-input{
+
+  border: 2px solid #FE142F;
+
+} */
 
 @keyframes modalopen {
   from {
