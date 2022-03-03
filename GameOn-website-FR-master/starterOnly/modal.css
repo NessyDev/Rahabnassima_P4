@@ -169,6 +169,8 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -183,10 +185,40 @@ main {
   padding-top: 10px;
 }
 
+.validation-form{
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+}
+
+.validation-bground{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+
+  
+}
+
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
 }
+
+
 
 label {
   font-family: var(--font-default);
@@ -225,7 +257,7 @@ input {
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
-.formData[data-error-visible="false"] .text-control {
+.formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
 
@@ -234,6 +266,8 @@ input[data-error]::after {
     font-size: 0.4em;
     color: red;
 } 
+
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -528,7 +562,6 @@ footer {
 
 
 
-
 /*Validation Forms Windows*/
 
 .validation-form{
@@ -558,11 +591,11 @@ footer {
 
 
 
-/* .error-input{
+ .error-input{
 
   border: 2px solid #FE142F;
 
-} */
+} 
 
 @keyframes modalopen {
   from {

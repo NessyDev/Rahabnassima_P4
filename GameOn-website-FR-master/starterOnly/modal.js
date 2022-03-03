@@ -19,18 +19,20 @@ const lastName = document.getElementById ("last");//Nom
 const firstName = document.getElementById ("first");//Prénom
 const email = document.getElementById ("email"); // Email
 const birthdate = document.getElementById("birthdate"); // Date de Naissance
+const quantity = document.getElementById ("quantity"); //Nombre de concours
 const validateInput = document.querySelectorAll (".text-control");
 const checkbox = document.getElementById ("checkbox1") //Condition de la checkbox
 const buttonSubmit = document.getElementById ("button-submit");//Bouton submit
 const validationButton = document.getElementById ("validation-button")//Fermer la fenêtre de confirmation
 const confirmationForm = document.querySelector (".validation-form")// Confirmation de la validation du formulaire
-
+const confirmationbg = document.querySelector (".validation-bground")
 
 //Evènements
 
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal)); //Lancement au clic
 closemodal.addEventListener("click", closeModal); //Fermeture de la modale au clic sur la croix
-validationButton.addEventListener ("click", closeConfirm) // Fermeture de la fenêtre de validation
+validationButton.addEventListener ("click", closeConfirm); // Fermeture de la fenêtre de validation
+
 //formData[0].addEventListener ("change",ValidationFirstname);//Validation Prénom
 //formData[1].addEventListener ("change", ValidationLastname);//Validation Nom
 //formData[2].addEventListener ("change", ValidationEmail); //Validation Email
@@ -53,10 +55,12 @@ buttonSubmit.addEventListener("click", ValidationForm); //Validation du formulai
 // confirmButton.addEventListener("click", closeConfirm); //Fermeture
 
 // lancement de la modale
-function launchModal() {
+
+function launchModal()
+{
   modalbg.style.display = "block";
-  // modalConfirm.style.display = "none";
-  modalBody.style.display= "block";
+  
+  
 
 }
 
@@ -64,7 +68,7 @@ function launchModal() {
 function closeModal()
 {
   modalbg.style.display= "none";
-  confirmationForm.style.display= "none";
+  
   
 }
 
@@ -72,7 +76,9 @@ function closeModal()
 
 function closeConfirm() {
   modalbg.style.display= "none";
-  confirmationForm.style.display= "none";
+  confirmationbg.style.display= "none";
+  
+  
 }
 
 //Erreurs
@@ -92,16 +98,16 @@ function ValidationFirstname ()
   
   if (firstName.value.length > 1 && (firstName.value)) {//Si le nombre est supérieur à 1
     
-    
+    firstName.classList.remove ("error-input");
     errorFirst.style.display = "none";
     return true; //Champs Valide
     
   }
   else{
 
+    firstName.classList.add ("error-input");
     errorFirst.style.display = "block";
     errorFirst.innerHTML = "Veuillez entrer au moins 2 caractères"; //Message d'erreur
-    firstName.classList.add ("text-control");
     /*firstName.style.border = "2px solid #FE152E"; //La bordure change au rouge*/
     return false; //Champs Invalide
   }
@@ -115,12 +121,12 @@ function ValidationLastname ()
   
   if (lastName.value.length > 1 && (lastName.value)) {//Si le nombre est supérieur à 1
     
-    errorLast.classList.remove ("input-color");
+    lastName.classList.remove ("error-input");
     errorLast.style.display = "none";
     return true; //Champs Valide
   }
   else{
-    errorLast.classList.add ("input-color");
+    lastName.classList.add ("error-input");
     errorLast.style.display = "block";
     errorLast.innerHTML = "Veuillez entrer au moins 2 caractères"; //Message d'erreur
     
@@ -142,15 +148,15 @@ function ValidationEmail ()
   
 
   if (emailregExp.test(email.value)){
-    
+
+    email.classList.remove ("error-input");
     errorEmail.style.display = "none";
     return true;
 
   } else {
    
+    email.classList.add ("error-input");
     errorEmail.style.display = "block" ;
-   
-
     errorEmail.innerHTML = "Adresse e-mail invalide";
     return false;
   }
@@ -165,12 +171,12 @@ function ValidationBirth ()
   let birdthRegExp = new RegExp (/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/);
   if (birdthRegExp.test(birthdate.value))
   {
-    console.log ("coucou")
+    birthdate.classList.remove ("error-input");
     errorBirthdate.style.display= "none";
     return true;
 
   } else {
-    
+    birthdate.classList.add ("error-input");
     errorBirthdate.style.display= "block" ;
     errorBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
     return false;
@@ -183,30 +189,33 @@ function ValidationBirth ()
 
 function ValidationNumber()
 {
-  let numberRegExp = new RegExp (/^-?d{1,}$/);
-  if (numberRegExp.test (quantity.value)){
-    if ( quantity.value < 0) {
-      errorQuantity.style.display = "block";
-      errorQuantity.innerHTML = "Veuillez entrer un nombre";
-      return false;
+  if (isNaN(parseInt(quantity.value)))
 
-      } else {
-
-      errorQuantity.style.display = "none";
-      return true;
-    }
-
-    } 
+  {
+    quantity.classList.add ("error-input");
+    errorQuantity.innerHTML = "Veuillez entrer un nombre";
+    errorQuantity.style.display = "block";
+    return false;
     
+  } else {
+
+    quantity.classList.remove("error-input");
+    errorQuantity.style.display = "none";
+    return true;
 
   }
+
+  
+
+}
+
 
 
   
 
 
 
-  //Validation du formulaire
+//Validation du formulaire
 
   
 
@@ -221,12 +230,12 @@ function ValidationNumber()
     isFormValid.push(ValidationBirth());
     isFormValid.push(ValidationConditions());
     isFormValid.push(ValidationEmail());
-    isFormValid.push(ValidationNumber());
+    
 
     if (!isFormValid.includes(false)) {
       errorSubmit.style.display = "none";
-      modalBody.style.display = "none";
-      modalConfirm.style.display = "flex";
+      modalbg.style.display = "none";
+      confirmationbg.style.display = "flex";
       modalForm.reset();
 
       for (let i= 0; i < textControl.length; i++) {
@@ -240,7 +249,8 @@ function ValidationNumber()
     }
   }
 
-  // Validations conditions d'utilisation
+
+// Validations conditions d'utilisation
 
   function ValidationConditions() 
   {
