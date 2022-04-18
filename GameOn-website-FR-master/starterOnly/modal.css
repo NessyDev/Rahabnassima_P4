@@ -68,20 +68,18 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+
+  .topnav.responsive {
+    position: relative;
+  }
+
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
+    
   }
   .topnav.responsive a {
     float: none;
@@ -92,14 +90,7 @@ img {
 
 
 
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
+ 
 
 main {
   font-size: 130%;
@@ -514,7 +505,42 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+
+
+
+/*responsive*/
+@media screen and (max-width: 1150px) {
+
+  .bground{
+    background-color: rgba(255, 255, 255, 0);
+    transition: 2s;
+  }
+  .content {
+    margin: 20% auto;
+  }
+
+    img{
+      width: 200px;
+      margin-top: 5%;
+    }
+
+  .topnav a {
+    display: none;
+  }
+  
+  .topnav a.icon {
+    float: right;
+    display: block;
+    color: red;
+  
+  }
+
+  .topnav a .icon .fa-bars {
+  
+    color: #f00;
+  }
+  
+
   .hero-section {
     display: block;
     box-shadow: unset;
