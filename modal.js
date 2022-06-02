@@ -32,27 +32,8 @@ const confirmationbg = document.querySelector (".validation-bground")
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal)); //Lancement au clic
 closemodal.addEventListener("click", closeModal); //Fermeture de la modale au clic sur la croix
 validationButton.addEventListener ("click", closeConfirm); // Fermeture de la fenêtre de validation
-
-//formData[0].addEventListener ("change",ValidationFirstname);//Validation Prénom
-//formData[1].addEventListener ("change", ValidationLastname);//Validation Nom
-//formData[2].addEventListener ("change", ValidationEmail); //Validation Email
-//formData[3].addEventListener("input", ValidationBirth); // Validation Date de Naissance
-//formData[4].addEventListener("change", ValidationNumber);//Validation Tournois
-//formData[5].addEventListener("change", ValidationConditions);//Validation des conditions
-
-/*buttonSubmit.addEventListener ("click", e => {
-
-  ValidationFirstname();
-  ValidationLastname();
-  ValidationEmail();
-  ValidationBirth();
-  ValidationNumber();
-  ValidationConditions();
-
-});*/
-
 buttonSubmit.addEventListener("click", ValidationForm); //Validation du formulaire
-// confirmButton.addEventListener("click", closeConfirm); //Fermeture
+
 
 // lancement de la modale
 
@@ -60,16 +41,12 @@ function launchModal()
 {
   modalbg.style.display = "block";
   
-  
-
 }
 
 //Fermeture de la modale
 function closeModal()
 {
   modalbg.style.display= "none";
-  
-  
 }
 
 //Confirmation de la fermeture de la modale
@@ -77,8 +54,6 @@ function closeModal()
 function closeConfirm() {
   modalbg.style.display= "none";
   confirmationbg.style.display= "none";
-  
-  
 }
 
 //Erreurs
@@ -218,9 +193,6 @@ function ValidationNumber()
 //Validation du formulaire
 
   
-
-  
-
   function ValidationForm (e) {
     e.preventDefault () //Empêche soumission du formulaire
     let isFormValid = []//Création d'un tableau contenant les fonctions
@@ -236,6 +208,7 @@ function ValidationNumber()
       errorSubmit.style.display = "none";
       modalbg.style.display = "none";
       confirmationbg.style.display = "flex";
+      console.log(modalForm.reset());
       modalForm.reset();
 
       for (let i= 0; i < textControl.length; i++) {
@@ -247,6 +220,7 @@ function ValidationNumber()
       errorSubmit.style.display = "block";
       errorSubmit.innerHTML = "Veuillez remplir tous les champs" ;
     }
+    
   }
 
 
